@@ -12,7 +12,6 @@ public class UBean {
 
 	public static ArrayList<Field> obtenerAtributos (Object o)
 	{
-		
 		ArrayList<Field> lista = new ArrayList<>();
 		
 		Class generica = o.getClass();
@@ -36,39 +35,27 @@ public class UBean {
 	public static void ejecutarSet(Object o, String att, Object valor)
 	{
 		
-/*
 		Class generica = o.getClass();
 		
-		Method[] m = generica.getDeclaredMethods();
+		Method m;
 		
-		Object[] params = new Object[1];
-							
-		if (m.getType().equals(String.class))
-						{
-							params[0] = "String";	
-						}
-						else if (f.getType().equals(Integer.class))
-						{
-							params[0] = 111111;
-						}
-						else
-						{
-							params[0] = null;
-						}
-							
-						try {
-								
-							m.invoke(valor, params);
-								
-							} 
-							catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
-							{
-
-								e.printStackTrace();
-							}
-							
-
-		*/
+		try {
+			
+			Object[] params = new Object[1];
+			
+			m = generica.getDeclaredMethod("set"+att.substring(0,1).toUpperCase()+att.substring(1));
+			
+			params[0] = valor;
+			
+			m.invoke(o, params);
+		} 
+		
+		catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
+		
+		{
+			e.printStackTrace();
+		}
+		
 		
 		
 	}
@@ -78,18 +65,21 @@ public class UBean {
 	// parámetro, ejecutando el getter dentro del objeto.
 	
 	
-	public static void ejecutarGet(Object o, String att)
+	public static Object ejecutarGet(Object o, String att)
 	{
 		
 		// GETTERS.
+		
+		Object valor = null;
 
 		Class generica = o.getClass();
 		
 		Method m;
+		
 		try 
 		{
 			m = generica.getDeclaredMethod("get"+att.substring(0,1).toUpperCase()+att.substring(1));
-			m.invoke(o, null);
+			valor = m.invoke(o, null);
 		} 
 		
 		catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
@@ -97,8 +87,8 @@ public class UBean {
 			e.printStackTrace();
 		}
 		
-	
+		return valor;
 		
-		}
+	}
 	
 }

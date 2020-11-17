@@ -22,6 +22,9 @@ public class Program {
 					System.out.println(aux);
 					
 				}
+				
+				
+		System.out.println(Utilidades.UBean.ejecutarGet(p, "Nombre"));
 	
 		
 	}

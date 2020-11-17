@@ -5,13 +5,20 @@ import Anotaciones.Tabla;
 @Tabla(nombre = "Persona")
 public class PersonaReflexion {
 
-	@Id()
+	
+	@Columna(nombre = "Dni")
 	private Integer dni;
 	
 	@Columna(nombre = "Nombre")
 	private String nombre;
+	
+	@Columna(nombre = "Apellido")
 	private String apellido;
+	
+	@Columna(nombre = "Provincia")
 	private String provincia;
+	
+	@Columna(nombre = "Localidad")
 	private String localidad;
 	
 
