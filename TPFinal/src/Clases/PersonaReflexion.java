@@ -1,3 +1,4 @@
+package Clases;
 import Anotaciones.Columna;
 import Anotaciones.Id;
 import Anotaciones.Tabla;
@@ -5,6 +6,9 @@ import Anotaciones.Tabla;
 @Tabla(nombre = "Persona")
 public class PersonaReflexion {
 
+	@Id
+	@Columna(nombre = "Id")
+	private Long id;
 	
 	@Columna(nombre = "Dni")
 	private Integer dni;

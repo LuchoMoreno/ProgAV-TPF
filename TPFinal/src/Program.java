@@ -1,6 +1,8 @@
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import Clases.PersonaReflexion;
+import Servicios.Servicios;
 import Utilidades.UBean;
 
 
@@ -24,7 +26,9 @@ public class Program {
 				}
 				
 				
-		System.out.println(Utilidades.UBean.ejecutarGet(p, "Nombre"));
+
+
+		Servicios.Guardar(p);
 	
 		
 	}
