@@ -22,11 +22,11 @@ public class Program {
 		p.setId(1L);
 		
 		
-		//Servicios.Guardar(p);
+		Servicios.Guardar(p);
 		
-		//Servicios.Eliminar(p);
+		Servicios.Eliminar(p);
 		
-		//Servicios.Modificar(p);
+		Servicios.Modificar(p);
 		
 		//PersonaReflexion per = (PersonaReflexion) Servicios.ObtenerPorID(p.getClass(), p);
 		
