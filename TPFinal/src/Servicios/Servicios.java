@@ -95,7 +95,7 @@ public class Servicios {
 	// armarse la query por medio de reflexión utilizando las anotaciones creadas en
 	// el punto 2 y utilizando los métodos creados en UBean.
 	
-	public void Eliminar(Object o)
+	public static void Eliminar(Object o)
 	{
 		
 		StringBuilder sb = new StringBuilder();
@@ -104,10 +104,41 @@ public class Servicios {
 		lista = UBean.obtenerAtributos(o);
 		
 		
-		sb.append("DELE FROM ");
+		sb.append("DELETE FROM ");
 		sb.append(o.getClass().getAnnotation(Tabla.class).nombre());
 		sb.append(" WHERE ");
 		
+		
+		// Recorro todos los atributos. 
+				for (Field campo : lista)
+				{
+					if (campo.getAnnotation(Id.class) == null)
+					{
+						sb.append(campo.getAnnotation(Columna.class).nombre() + "=");
+						
+						
+						if (campo.getAnnotatedType().getType().equals(String.class))
+						{
+							sb.append("'");
+							sb.append(UBean.ejecutarGet(o, campo.getAnnotation(Columna.class).nombre()));
+							sb.append("'");
+							sb.append("&&");
+						}
+						else
+						{
+							sb.append(UBean.ejecutarGet(o, campo.getAnnotation(Columna.class).nombre()));
+							sb.append("&&");
+						}
+					
+					}	
+				}
+				
+				sb.delete(sb.length()-2, sb.length());
+
+			
+		System.out.println(sb);
+	
+	
 		
 	}
 	

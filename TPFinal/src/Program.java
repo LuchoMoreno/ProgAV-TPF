@@ -21,6 +21,8 @@ public class Program {
 		p.setProvincia("Buenos Aires");
 			
 		Servicios.Guardar(p);
+		
+		Servicios.Eliminar(p);
 	
 		
 	}
