@@ -19,15 +19,17 @@ public class Program {
 		p.setLocalidad("Banfield");
 		p.setNombre("Lucho");
 		p.setProvincia("Buenos Aires");
-			
+		p.setId(1L);
+		
+		
 		Servicios.Guardar(p);
 		
 		Servicios.Eliminar(p);
 		
-		
 		Servicios.Modificar(p);
 		
-	
+		Servicios.ObtenerPorID(p.getClass(), p);
+		
 		
 	}
 
