@@ -45,13 +45,13 @@ public class PersonaReflexion {
 
 	// SOBRESCRIBIR METODOS.
 	
-	public int getDNI() {
+	public int getDni() {
 		return dni;
 	}
 
 
 
-	public void setDNI(Integer dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 

@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import Anotaciones.Columna;
+import Anotaciones.Id;
 import Anotaciones.Tabla;
 import Utilidades.UBean;
 
@@ -19,35 +20,57 @@ public class Servicios {
 	public static void Guardar(Object o)
 	{
 		
+		StringBuilder sb = new StringBuilder();
+		
 		ArrayList<Field> lista = new ArrayList<>();
 		lista = UBean.obtenerAtributos(o);
 		
 		
-		String consulta = "Insert into ";
+		// Armo primer parte del String.
+		
+		sb.append("INSERT INTO ");
+		sb.append(o.getClass().getAnnotation(Tabla.class).nombre());
+		sb.append(" (");
 		
 		
-		//String nombreTabla = o.getClass().getAnnotation(Tabla.class).nombre();
-		String nombreTabla = "Personas";
-		
-		consulta += nombreTabla + " (";
-		
-	
+		// Recorro todos los atributos. 
 		for (Field campo : lista)
 		{
-			//consulta += campo.getName().toString() + ",";
-			consulta += campo.getAnnotation(Columna.class).nombre() + ",";
-			
+			if (campo.getAnnotation(Id.class) == null)
+			{
+				sb.append(campo.getAnnotation(Columna.class).nombre() + ",");
+			}	
 		}
 		
-		if(consulta.endsWith(","))
+		sb.delete(sb.length()-1, sb.length());
+		sb.append(") VALUES (");
+		
+		
+		for (Field campo: lista)
 		{
-			consulta = consulta.substring(0,consulta.length() - 1);
-			consulta += ")";
+			if (campo.getAnnotation(Id.class) == null)
+			{
+				if (campo.getAnnotatedType().getType().equals(String.class))
+				{
+					sb.append("'");
+					sb.append(UBean.ejecutarGet(o, campo.getAnnotation(Columna.class).nombre()));
+					sb.append("'");
+					sb.append(",");
+				}
+				else
+				{
+					sb.append(UBean.ejecutarGet(o, campo.getAnnotation(Columna.class).nombre()));
+					sb.append(",");
+				}
+					
+			}
 		}
 		
+		sb.delete(sb.length()-1, sb.length());
+		sb.append(")");
 
 	
-		System.out.println(consulta);
+		System.out.println(sb);
 		
 	}
 	
@@ -75,7 +98,15 @@ public class Servicios {
 	public void Eliminar(Object o)
 	{
 		
-		String consulta = "Insert into";
+		StringBuilder sb = new StringBuilder();
+		
+		ArrayList<Field> lista = new ArrayList<>();
+		lista = UBean.obtenerAtributos(o);
+		
+		
+		sb.append("DELE FROM ");
+		sb.append(o.getClass().getAnnotation(Tabla.class).nombre());
+		sb.append(" WHERE ");
 		
 		
 	}

@@ -13,21 +13,13 @@ public class Program {
 
 		PersonaReflexion p = new PersonaReflexion();
 		
-		ArrayList<Field> lista = new ArrayList<>();
-		
-		
-		lista = Utilidades.UBean.obtenerAtributos(p);
-		
-		
-				for (Object aux : lista)
-				{
-					System.out.println(aux);
-					
-				}
 				
-				
-
-
+		p.setDni(11111);
+		p.setApellido("Moreno");
+		p.setLocalidad("Banfield");
+		p.setNombre("Lucho");
+		p.setProvincia("Buenos Aires");
+			
 		Servicios.Guardar(p);
 	
 		
