@@ -81,11 +81,64 @@ public class Servicios {
 	// query por medio de reflexión utilizando las anotaciones creadas en el punto 2
 	// y utilizando los métodos creados en UBean.
 	
-	public void Modificar(Object o)
+	public static void Modificar(Object o)
 	{
 		
-		String consulta = "Insert into";
+		StringBuilder sb = new StringBuilder();
 		
+		ArrayList<Field> lista = new ArrayList<>();
+		lista = UBean.obtenerAtributos(o);
+		
+		
+		// Armo primer parte del String.
+		
+		sb.append("UPDATE ");
+		sb.append(o.getClass().getAnnotation(Tabla.class).nombre());
+		sb.append(" SET ");
+		
+		
+		// Recorro todos los atributos. 
+		for (Field campo : lista)
+		{
+			if (campo.getAnnotation(Id.class) == null)
+			{
+				sb.append(campo.getAnnotation(Columna.class).nombre() + "=");
+				
+				
+				if (campo.getAnnotatedType().getType().equals(String.class))
+				{
+					sb.append("'");
+					sb.append(UBean.ejecutarGet(o, campo.getAnnotation(Columna.class).nombre()));
+					sb.append("'");
+					sb.append(",");
+				}
+				else
+				{
+					sb.append(UBean.ejecutarGet(o, campo.getAnnotation(Columna.class).nombre()));
+					sb.append(",");
+				}
+			
+			}	
+		}
+		
+		sb.delete(sb.length()-1, sb.length());
+
+		
+		sb.append(" WHERE ");
+		
+		
+		for (Field campo : lista)
+		{
+			if (campo.getAnnotation(Id.class) != null)
+			{
+				sb.append(campo.getAnnotation(Columna.class).nombre());
+				sb.append("=");
+				sb.append(UBean.ejecutarGet(o, campo.getAnnotation(Columna.class).nombre()));
+			}
+			
+		}
+		
+		System.out.println(sb);
 		
 	}
 	

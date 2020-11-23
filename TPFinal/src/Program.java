@@ -23,6 +23,10 @@ public class Program {
 		Servicios.Guardar(p);
 		
 		Servicios.Eliminar(p);
+		
+		
+		Servicios.Modificar(p);
+		
 	
 		
 	}
