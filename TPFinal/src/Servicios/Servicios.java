@@ -3,12 +3,15 @@ package Servicios;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import Anotaciones.Columna;
 import Anotaciones.Id;
 import Anotaciones.Tabla;
 import Utilidades.UBean;
+import Utilidades.UConexion;
 
 public class Servicios {
 	
@@ -70,6 +73,25 @@ public class Servicios {
 		sb.delete(sb.length()-1, sb.length());
 		sb.append(")");
 
+		
+		
+		// INTENTO REALIZAR LA CONEXION CON LA REQUEST.
+		
+		
+		try {
+			
+			 Connection conn = UConexion.getConnection();
+			 PreparedStatement ps = conn.prepareStatement(sb.toString());
+			 ps.execute();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 	
 		System.out.println(sb);
 		

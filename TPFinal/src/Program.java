@@ -28,7 +28,7 @@ public class Program {
 		
 		Servicios.Modificar(p);
 		
-		Servicios.ObtenerPorID(p.getClass(), p);
+		PersonaReflexion per = (PersonaReflexion) Servicios.ObtenerPorID(p.getClass(), p);
 		
 		
 	}
