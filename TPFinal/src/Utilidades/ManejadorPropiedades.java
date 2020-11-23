@@ -14,7 +14,7 @@ public class ManejadorPropiedades {
 		Properties props = new Properties();
 		try 
 		{
-			props.load(new FileInputStream(System.getProperty("user.dir")+"/Resources/framework.properties"));
+			props.load(new FileInputStream(System.getProperty("user.dir")+"/Bin/Resources/framework.properties"));
 		
 		} 
 		

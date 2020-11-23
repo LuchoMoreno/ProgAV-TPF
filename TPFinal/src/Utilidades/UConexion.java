@@ -8,13 +8,19 @@ public class UConexion {
 	
 	
 	
-	
+	/*
 	private static final String DRIVER_CONECTION = ManejadorPropiedades.getProperty("props.Driver").toString();
 	private static final String PATH_CONECTION = ManejadorPropiedades.getProperty("props.ubicaciondb").toString();
 	private static final String USER = ManejadorPropiedades.getProperty("props.usuariodb").toString();
 	private static final String PASSWORD = ManejadorPropiedades.getProperty("props.password").toString();
 	private static Connection CONN = null;
+	*/
 	
+	private static final String DRIVER_CONECTION = "com.mysql.jdbc.Driver";
+	private static final String PATH_CONECTION = "jdbc:mysql://localhost:3306/pruebas";
+	private static final String USER = "root";
+	private static final String PASSWORD = "";
+	private static Connection CONN = null;
 	
 	
 	// Constructor PRIVADO:

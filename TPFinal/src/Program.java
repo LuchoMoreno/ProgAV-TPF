@@ -14,21 +14,21 @@ public class Program {
 		PersonaReflexion p = new PersonaReflexion();
 		
 				
-		p.setDni(11111);
-		p.setApellido("Moreno");
+		p.setDni(22222);
+		p.setApellido("Prueba");
 		p.setLocalidad("Banfield");
-		p.setNombre("Lucho");
+		p.setNombre("TPFinal");
 		p.setProvincia("Buenos Aires");
 		p.setId(1L);
 		
 		
-		Servicios.Guardar(p);
+		//Servicios.Guardar(p);
 		
-		Servicios.Eliminar(p);
+		//Servicios.Eliminar(p);
 		
-		Servicios.Modificar(p);
+		//Servicios.Modificar(p);
 		
-		PersonaReflexion per = (PersonaReflexion) Servicios.ObtenerPorID(p.getClass(), p);
+		//PersonaReflexion per = (PersonaReflexion) Servicios.ObtenerPorID(p.getClass(), p);
 		
 		
 	}

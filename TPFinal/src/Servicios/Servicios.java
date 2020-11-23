@@ -75,11 +75,9 @@ public class Servicios {
 
 		
 		
-		// INTENTO REALIZAR LA CONEXION CON LA REQUEST.
-		
-		
+		// INTENTO REALIZAR LA CONEXION CON LA PETICION.
 		try {
-			
+
 			 Connection conn = UConexion.getConnection();
 			 PreparedStatement ps = conn.prepareStatement(sb.toString());
 			 ps.execute();
@@ -161,6 +159,23 @@ public class Servicios {
 			
 		}
 		
+		
+		
+		// INTENTO REALIZAR LA CONEXION CON LA PETICION.
+		try {
+
+			Connection conn = UConexion.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sb.toString());
+			ps.execute();
+					
+		} catch (Exception e) {
+					e.printStackTrace();
+		}
+		
+		
+		
+		
+		
 		System.out.println(sb);
 		
 	}
@@ -212,6 +227,27 @@ public class Servicios {
 				sb.delete(sb.length()-2, sb.length());
 
 			
+				
+
+				// INTENTO REALIZAR LA CONEXION CON LA PETICION.
+			try {
+
+				Connection conn = UConexion.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sb.toString());
+				ps.execute();
+							
+				} catch (Exception e) {
+							
+						e.printStackTrace();
+				}
+				
+				
+				
+				
+				
+				
+				
+				
 		System.out.println(sb);
 	
 	
